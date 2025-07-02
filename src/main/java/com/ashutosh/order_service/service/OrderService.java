@@ -10,4 +10,5 @@ public interface OrderService {
     ResponseEntity<OrderDto> trackOrder(Long orderId);
     ResponseEntity<List<OrderDto>> getAllOrders();
 	ResponseEntity<OrderDto> updateOrder(OrderDto dto);
+	ResponseEntity<OrderDto> cancelOrder(Long orderId);
 }

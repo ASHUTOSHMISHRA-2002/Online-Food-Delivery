@@ -97,7 +97,26 @@ public class OrderServiceImpl implements OrderService {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    
 
+    @Override
+    public ResponseEntity<OrderDto> cancelOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+            .orElseThrow(() -> new ResourceNotFoundException("Order not found with ID: " + orderId));
 
+        // Optional: for soft delete
+        order.setStatus(OrderStatus.CANCELLED);
+        Order cancelled = orderRepository.save(order);
+
+        OrderDto response = new OrderDto(
+            cancelled.getOrderId(),
+            cancelled.getCustomerId(),
+            cancelled.getRestaurantId(),
+            cancelled.getStatus(),
+            cancelled.getTotalAmount()
+        );
+
+        return ResponseEntity.ok(response);
+    }
     
 }

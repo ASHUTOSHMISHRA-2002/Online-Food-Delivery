@@ -43,10 +43,10 @@ public class OrderController {
 		return updated;
 	}
 	
-//	@PutMapping("/cancel/{orderId}")
-//	public ResponseEntity<OrderDto> deleteOrder(@PathVariable("orderId") Long OrderId) {
-//		ResponseEntity<OrderDto> orderDto = orderService.deleteOrder(OrderId);
-//		return orderDto;
-//	}
+	@PutMapping("/cancel/{orderId}")
+	public ResponseEntity<OrderDto> cancelOrder(@PathVariable("orderId") Long OrderId) {
+		ResponseEntity<OrderDto> orderDto = orderService.cancelOrder(OrderId);
+		return orderDto;
+	}
 
 }
